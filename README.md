@@ -8,4 +8,4 @@ Include the link to my deployed app here and any instructions that I deem import
 ## MVP Goals:
 ## Stretch Goals:
 ## Technologies Used:
-Node, Express, MongoDB, Javascript, Html, CSS, EJS, and Bootstrap
+Node, Express, MongoDB, Javascript, Html, CSS, EJS, and Bootstrap.
