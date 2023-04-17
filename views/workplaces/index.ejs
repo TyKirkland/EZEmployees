@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+
+<h1>My Workplaces:</h1>
+<!-- input search feature here -->
+<!-- need to also impliment basic auth so they can only see workplaces they own -->
+<% for(let i = 0; i < workplaces.length; i++) { %>
+    <a href="schedules/<%= workplaces[i]._id %>">
+        <div>
+            <h3> <%= workplaces[i].name %> </h3>
+        </div>
+    </a>
+<% } %>
+<a href="/schedules/new">
+    <button>
+        Create Workplace
+    </button>
+</a>
+
+</body>
+</html>
