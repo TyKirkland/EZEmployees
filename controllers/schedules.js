@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Employees } = require('../models/Employees');
+const Employees = require('../models/Employees');
 const Workplaces = require('../models/Workplaces');
 
 //routes
@@ -77,6 +77,59 @@ router.get('/:id', async (req, res, next) => {
     try{
         const myWorkplace = await Workplaces.findById(req.params.id);
         res.render('workplaces/show', {myWorkplace});
+    }
+    catch(err){
+        console.log(err);
+        next();
+    }
+})
+
+//employee create page route
+router.get('/:id/newemployee', async (req, res, next) => {
+    res.render('employees/new');
+})
+
+//employee post route
+router.post('/employee', async (req, res, next) => {
+    try{
+        const newEmployee = await Employees.create(req.body);
+        res.redirect('/schedules');
+    }
+    catch(err){
+        res.redirect('/schedules/new/newemployee');
+        next();
+    }
+})
+
+//employee edit page route
+router.get('/:workplaceid/:employeeid', async (req, res, next) => {
+    try{
+        const employeeToBeEdited = await Employees.findById(req.params.employeeid);
+        res.render('/employees/edit', {employee: employeeToBeEdited});
+    }
+    catch(err){
+        console.log(err);
+        next();
+    }
+})
+
+//employee update route
+router.put('/:workplaceid/:employeeid', async (req, res, next) => {
+    try{
+        const updatedEmployee = await Employees.findByIdAndUpdate(req.params.employeeid, req.body);
+        res.redirect(`/schedules/${req.params.workplaceid}`);
+    }
+    catch(err){
+        console.log(err);
+        next();
+    }
+})
+
+//employee delete route
+router.delete('/:workplaceid/:employeeid', async (req, res, next) => {
+    try{
+        const deletedItem = await Employees.findByIdAndDelete(req.params.employeeid);
+        res.redirect('/schedules');
     }
     catch(err){
         console.log(err);
