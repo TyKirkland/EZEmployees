@@ -12,7 +12,7 @@ Include the link to my deployed app here and any instructions that I deem import
 4. Ability to sort employees into job categories.
 5. Ability to make shifts.
 6. Ability to adjust shift requirements.
-7. Ability to adjust emlpoyee availability.
+7. Ability to adjust employee availability.
 8. Ability to create, view, alter, and delete schedules.
 ## Stretch Goals:
 1. Ability to set an overtime value which is tracked to alert the user when confirming a schedule that would cause someone to exceed it.

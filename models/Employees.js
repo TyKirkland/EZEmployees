@@ -9,7 +9,8 @@ const employeesSchema = new Schema({
         unique: true
     },
     workplace: {
-        type: mongoose.Schema.Types.ObjectId
+        type: String,
+        default: ''
     }
     // need to add job category addition ability
     // need to add day and time availability options

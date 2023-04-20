@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EZEmployees</title>
+    <script type="text/html" src="../../public/script.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+</head>
+<body>
     <script>
 
-        let helo = "hello2";
-        console.log(helo);
         document.addEventListener('DOMContentLoaded', function() {
           var calendarEl = document.getElementById('calendar');
           var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -21,14 +22,69 @@
             }
           });
           calendar.render();
+          let shiftToAdd = {};
+          <% for(let i = 0; i < myShifts.length; i++) {%>
+            <% if(myShifts[i].workplace === myWorkplace.id){ %>
+            if('<%=myShifts[i].startTime%>' == ''){
+                shiftToAdd = {
+                    title: '<%= myShifts[i].title %>',
+                    date: '<%= myShifts[i].start %>',
+                    display: 'block',
+                    url: '/schedules/<%=myWorkplace.id%>/<%=myShifts[i].id%>/shift'
+                }
+            }
+            else{
+                shiftToAdd = {
+                    title: '<%= myShifts[i].title %>',
+                    start: '<%= myShifts[i].start %>T<%= myShifts[i].startTime %>',
+                    end: '<%= myShifts[i].start %>T<%= myShifts[i].endTime %>',
+                    display: 'block',
+                    url: '/schedules/<%=myWorkplace.id%>/<%=myShifts[i].id%>/shift'
+                }
+            }
+            calendar.addEvent(shiftToAdd);
+            <% } %>
+          <% } %>
         });
   
     </script>
-</head>
-<body>
-    <h1>EZEmployees</h1>
+
+    <h1> <%= myWorkplace.name %> </h1>
+    <div>
+        Employees:
+        <% for(let i = 0; i < myEmployees.length; i++) { %>
+            <% if(myEmployees[i].workplace === myWorkplace.id){ %>
+                <a href="/schedules/<%=myWorkplace.id%>/<%=myEmployees[i].id%>"><h4> <%= myEmployees[i].name %> </h4></a>
+            <% } %>
+        <% } %>
+        <a href="/schedules/<%=myWorkplace.id%>/newemployee">
+            <button>
+                New Employee
+            </button>
+        </a>    
+    </div>
+    <a href="/schedules/<%=myWorkplace.id%>/edit">
+        <button>
+            Edit Workplace
+        </button>
+    </a>
+    <form method="POST" action="/schedules/<%= myWorkplace._id %>?_method=DELETE">
+        <input type="submit" value="Delete Workplace">
+    </form>    
+    <a href="/schedules/<%=myWorkplace.id%>/newshift">
+        <button>
+            Create Shift
+        </button>
+    </a>
+    <a href="/schedules">
+        <button>
+            Back
+        </button>
+    </a>
     <div style="height:750px; width:750px">
         <div id="calendar"></div>
     </div>
+
+
 </body>
 </html>

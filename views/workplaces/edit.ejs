@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs') %>
+    <h1>Edit the Workplace: <%= workplace.name %> </h1>
+    <form method="POST" action="/schedules/<%= workplace.id %>?_method=PUT">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="<%=workplace.name%>" />
+        <br>
+        <input type="submit" value="Confirm">
+    </form>
+    <a href="/schedules/<%= workplace.id %>">
+        <button>
+            Back
+        </button>
+    </a>
+</body>
+</html>

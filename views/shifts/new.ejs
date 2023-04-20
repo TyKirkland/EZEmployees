@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs') %>
+
+<h1>Add a new Shifts:</h1>
+<form action="/schedules/<%= workplaceID %>/shift" method="POST">
+    <label for="title">Employee:</label>
+    <select id="title" name="title">
+        <% for(let i = 0; i < myEmployees.length; i++) { %>
+            <% if(myEmployees[i].workplace === workplaceID){ %>
+            <option value="<%=myEmployees[i].name%>"><%=myEmployees[i].name%></option>
+            <% } %>
+        <% } %>
+    </select>
+    <label for="start">Date:</label>
+    <input type="date" name="start" id="start">
+    <label for="startTime">Start Time:</label>
+    <input type="time" name="startTime" id="startTime">
+    <label for="endTime">End Time:</label>
+    <input type="time" name="endTime" id="endTime">
+    <input type="hidden" name="workplace" id="workplace" value="<%= workplaceID %>">
+    <input type="submit" value="Submit">
+</form>
+<a href="/schedules/<%= workplaceID %>">
+    <button>
+        Back
+    </button>
+</a>
+
+
+</body>
+</html>

@@ -3,11 +3,11 @@ const {mongoose} = require('../config/connection');
 const Schema = mongoose.Schema;
 
 const shiftSchema = new Schema({
-    name: {
+    title: {
         type: String,
         required: true
     },
-    date: {
+    start: {
         type: String,
         required: true
     },
@@ -16,5 +16,12 @@ const shiftSchema = new Schema({
     },
     endTime: {
         type: String
+    },
+    workplace: {
+        type: String
     }
 })
+
+const Shifts = mongoose.model('shifts', shiftSchema);
+
+module.exports = Shifts;

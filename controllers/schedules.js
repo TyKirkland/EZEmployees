@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Employees = require('../models/Employees');
 const Workplaces = require('../models/Workplaces');
+const Shifts = require('../models/Shifts');
 
 //routes
 
@@ -76,7 +77,10 @@ router.delete('/:id', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     try{
         const myWorkplace = await Workplaces.findById(req.params.id);
-        res.render('workplaces/show', {myWorkplace});
+        const myEmployees = await Employees.find({});
+        const myShifts = await Shifts.find({});
+
+        res.render('workplaces/show', {myWorkplace, myEmployees, myShifts});
     }
     catch(err){
         console.log(err);
@@ -84,19 +88,77 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+//shift create page route
+router.get('/:id/newshift', async (req, res, next) => {
+    const myEmployees = await Employees.find({});
+    const workplaceID = req.params.id;
+    res.render('shifts/new', {myEmployees, workplaceID});
+})
+
+//shift post route
+router.post('/:id/shift', async (req, res, next) => {
+    try{
+        const newShift = await Shifts.create(req.body);
+        res.redirect(`/schedules/${req.params.id}`);
+    }
+    catch(err){
+        res.redirect('/error');
+        next();
+    }
+})
+
+//shift edit page route
+router.get('/:workplaceid/:shiftid/shift', async (req, res, next) => {
+    try{
+        const shiftToBeEdited = await Shifts.findById(req.params.shiftid);
+        const myEmployees = await Employees.find({});
+        res.render('shifts/edit', {shift: shiftToBeEdited, workplaceID: req.params.workplaceid, myEmployees});
+    }
+    catch(err){
+        console.log(err);
+        next();
+    }
+})
+
+//shift update route
+router.put('/:workplaceid/:shiftid/shift', async (req, res, next) => {
+    try{
+        const updatedShift = await Shifts.findByIdAndUpdate(req.params.shiftid, req.body);
+        res.redirect(`/schedules/${req.params.workplaceid}`);
+    }
+    catch(err){
+        console.log(err);
+        next();
+    }
+})
+
+//shift delete route
+router.delete('/:workplaceid/:shiftid/shift', async (req, res, next) => {
+    try{
+        const deletedItem = await Shifts.findByIdAndDelete(req.params.shiftid);
+        res.redirect(`/schedules/${req.params.workplaceid}`);
+    }
+    catch(err){
+        console.log(err);
+        next();
+    }
+})
+
+
 //employee create page route
 router.get('/:id/newemployee', async (req, res, next) => {
-    res.render('employees/new');
+    const employeesWorkplace = await Workplaces.findById(req.params.id);
+    res.render('employees/new', {employeesWorkplace});
 })
 
 //employee post route
-router.post('/employee', async (req, res, next) => {
+router.post('/:id/employee', async (req, res, next) => {
     try{
         const newEmployee = await Employees.create(req.body);
-        res.redirect('/schedules');
+        res.redirect(`/schedules/${req.params.id}`);
     }
     catch(err){
-        res.redirect('/schedules/new/newemployee');
+        res.redirect('/schedules');
         next();
     }
 })
@@ -105,7 +167,7 @@ router.post('/employee', async (req, res, next) => {
 router.get('/:workplaceid/:employeeid', async (req, res, next) => {
     try{
         const employeeToBeEdited = await Employees.findById(req.params.employeeid);
-        res.render('/employees/edit', {employee: employeeToBeEdited});
+        res.render('employees/edit', {employee: employeeToBeEdited, workplaceID: req.params.workplaceid});
     }
     catch(err){
         console.log(err);
