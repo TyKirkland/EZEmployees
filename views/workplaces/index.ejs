@@ -1,5 +1,13 @@
 <%- include('../partials/header.ejs') %>
 
+<% if(user) {%> 
+    <h3>Hello, <%= user.username %> </h3>
+<% } %>
+<a href="/">
+    <button>
+        Logout
+    </button>
+</a>
 <h1>My Workplaces:</h1>
 <!-- input search feature here -->
 <!-- need to also impliment basic auth so they can only see workplaces they own -->

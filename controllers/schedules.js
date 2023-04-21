@@ -11,8 +11,8 @@ const Shifts = require('../models/Shifts');
 router.get('', async (req, res, next) => {
     try{
         let myWorkplaces;
-        myWorkplaces = await Workplaces.find({});
-        res.render('workplaces/index', {workplaces: myWorkplaces});
+        myWorkplaces = await Workplaces.find({user: req.session.currentUser.id});
+        res.render('workplaces/index', {workplaces: myWorkplaces, user: req.session.currentUser});
     }
     catch(err){
         console.log(err);
@@ -34,7 +34,7 @@ router.post('', async (req, res, next) => {
 
 //workplace create route
 router.get('/new', (req, res) => {
-    res.render('workplaces/new');
+    res.render('workplaces/new', {user: req.session.currentUser});
 })
 
 //workplace edit page route

@@ -7,6 +7,10 @@ const workplaceSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
     }
     // need to link each workplace to the user
     // need to add days open option?
