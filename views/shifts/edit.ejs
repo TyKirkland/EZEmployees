@@ -6,7 +6,7 @@
         <option><%=shift.title%></option>
         <% for(let i = 0; i < myEmployees.length; i++) { %>
             <% if(myEmployees[i].workplace === workplaceID && shift.title !== myEmployees[i].name){ %>
-            <option value="<%=shift.title%>"><%=myEmployees[i].name%></option>
+            <option><%=myEmployees[i].name%></option>
             <% } %>
         <% } %>
     </select>
