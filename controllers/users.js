@@ -23,6 +23,7 @@ router.post('/signup', async (req, res, next) => {
         const hash = await bcrypt.hash(newUser.password, salt);
         newUser.password = hash;
         await Users.create(newUser);
+        res.redirect('/schedules');
     }
     catch(err){
         res.redirect('/signup');
@@ -42,11 +43,16 @@ router.post('/login', async (req, res, next) => {
             res.redirect('/login');
         }
         const match = await bcrypt.compare(loggedInUser.password, user.password);
+        req.session.currentUser = {
+            id: '',
+            username: ''
+        };
         if(match){
             req.session.currentUser = {
                 id: user._id,
                 username: user.username
             };
+            // this currently runs too fast so it sometimes loads without the appropriate currentUser so you have to reload the page
             res.redirect('/schedules');
         }
         else{

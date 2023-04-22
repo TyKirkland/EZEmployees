@@ -26,9 +26,8 @@ app.use(
         }),
         // secret ensure that it's not an outside attack
         secret: process.env.SECRET,
-        // no resaving the same session
-        resave: false,
         saveUninitialized: false,
+        resave: false,
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 10 
             // this sets the cookie to last for 10 days
@@ -36,7 +35,6 @@ app.use(
         }
     })
 )
-
 
 //routes
 
