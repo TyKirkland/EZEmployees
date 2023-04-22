@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const employeesSchema = new Schema({
     name: {
         type: String,
-        required: [true, 'Name is required'],
-        unique: true
+        required: [true, 'Name is required']
     },
     workplace: {
         type: String,

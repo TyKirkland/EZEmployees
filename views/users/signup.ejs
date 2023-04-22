@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZEmployees</title>
-</head>
-<body>
-    <h1>Signup for your account:</h1>
-    <form method="POST" action="/signup">
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email" placeholder="something@gmail.com">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" placeholder="CornOnTheCobber">
-        <label for="password">Password:</label>
-        <input type="text" name="password" id="password">
-        <input type="submit" value="Create New User">
-    </form>
-    <a href="/">
-        <button>
-            Back
-        </button>
-    </a>    
+<%- include('../partials/header.ejs') %>
+    <script>
+        let logoutButton = document.querySelector('#logout');
+        logoutButton.remove();
+    </script>
+    <div id="signupform">
+        <h1>Signup for your account:</h1>
+        <form method="POST" action="/signup">
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" placeholder="something@gmail.com">
+            </div>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="CornOnTheCobber">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="text" name="password" id="password">
+            </div>
+            <div>
+                <a href="/" class="backbutton">
+                    Back
+                </a>
+                <input type="submit" value="Create New User" id="submitbutton">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

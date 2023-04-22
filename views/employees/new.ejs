@@ -1,17 +1,22 @@
 <%- include('../partials/header.ejs') %>
 
-<h1>Add a new Employee to <%= employeesWorkplace.name %>:</h1>
-<form action="/schedules/<%= employeesWorkplace.id %>/employee" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name">
+<div class="loginpage">
+    <h1>Add a new Employee to <%= employeesWorkplace.name %>:</h1>
+    <form action="/schedules/<%= employeesWorkplace.id %>/employee" method="POST">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+    </div>
     <input type="hidden" name="workplace" id="workplace" value="<%= employeesWorkplace.id %>">
-    <input type="submit" value="Submit">
-</form>
-<a href="/schedules/<%= employeesWorkplace.id %>">
-    <button>
-        Back
-    </button>
-</a>
+    <div>
+        <a href="/schedules/<%= employeesWorkplace.id %>" class="backbutton">
+            Back
+        </a>
+        <input type="submit" value="Submit" class="backbutton">
+    </div>
+    </form>
+
+</div>
 
 </body>
 </html>

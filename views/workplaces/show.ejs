@@ -1,11 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZEmployees</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<%- include('../partials/header.ejs') %>
+
+    <div class="calendarpage" style="margin:50px 0 0 0">
+        <aside>
+            <h1 style="font-size: 36px;position:relative; top: -15px"> <%= myWorkplace.name %> </h1>
+            <hr style="position:relative;top:-38px;">
+            <div>
+                <h3 style="position:relative;top:-30px;">Employees:</h3>
+                <% for(let i = 0; i < myEmployees.length; i++) { %>
+                    <% if(myEmployees[i].workplace === myWorkplace.id){ %>
+                        <a href="/schedules/<%=myWorkplace.id%>/<%=myEmployees[i].id%>" style="position:relative;top:-15px;font-weight: 400;" ><h4 style="position:relative;top:-15px;font-weight: 400;"> <%= myEmployees[i].name %> </h4></a>
+                    <% } %>
+                <% } %>
+                <a href="/schedules/<%=myWorkplace.id%>/newemployee" style="position:relative;top:-15px;">
+                    <button style="position:relative;top:-15px;">
+                        New Employee
+                    </button>
+                </a>    
+            </div>
+        </aside>
+    
+        <div>
+            <div style="height:750px; width:750px; position: relative; top: 14px;">
+                <div id="calendar"></div>
+            </div>
+            <div class="workplaceoptions">
+                <a href="/schedules/<%=myWorkplace.id%>/newshift">
+                    <button>
+                        Create Shift
+                    </button>
+                </a>
+                
+                <a href="/schedules/<%=myWorkplace.id%>/edit">
+                    <button style="position: relative; left: -20px">
+                        Edit Workplace
+                    </button>
+                </a>
+                <a href="/schedules">
+                    <button>
+                        Back
+                    </button>
+                </a>
+
+            </div>
+    
+        </div>
+    </div>
+
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
     <script>
 
@@ -46,47 +86,6 @@
         });
   
     </script>
-
-</head>
-<body class="row my-custom-row align-items-center justify-content-center text-center" style="background-color:rgb(180,176,176)">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-
-    <h1 class="row my-custom-row align-items-center justify-content-center"> <%= myWorkplace.name %> </h1>
-    <div class="row my-custom-row align-items-center justify-content-center">
-        <h5>Employees:</h5>
-        <% for(let i = 0; i < myEmployees.length; i++) { %>
-            <% if(myEmployees[i].workplace === myWorkplace.id){ %>
-                <a href="/schedules/<%=myWorkplace.id%>/<%=myEmployees[i].id%>" ><h6 class="row my-custom-row align-items-center justify-content-center"> <%= myEmployees[i].name %> </h6></a>
-            <% } %>
-        <% } %>
-        <a href="/schedules/<%=myWorkplace.id%>/newemployee">
-            <button style="margin-top:10px">
-                New Employee
-            </button>
-        </a>    
-    </div>
-    <a href="/schedules/<%=myWorkplace.id%>/newshift">
-        <button style="position:relative;bottom:-50px">
-            Create Shift
-        </button>
-    </a>
-    <div class="row my-custom-row align-items-center justify-content-center" style="height:750px; width:750px;">
-        <div class="row my-custom-row align-items-center justify-content-center" id="calendar" style="text-decoration: none;"></div>
-    </div>
-    <a href="/schedules">
-        <button style="bottom:50px;position:relative">
-            Back
-        </button>
-    </a>
-    <a href="/schedules/<%=myWorkplace.id%>/edit">
-        <button style="margin-bottom:5px">
-            Edit Workplace
-        </button>
-    </a>
-    <form method="POST" action="/schedules/<%= myWorkplace._id %>?_method=DELETE">
-        <input type="submit" value="Delete Workplace" style="margin-bottom:10px">
-    </form>    
-
 
 </body>
 </html>

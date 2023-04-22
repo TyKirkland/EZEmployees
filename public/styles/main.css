@@ -1,0 +1,101 @@
+:root {
+    --background-color: #1e272e;
+    --color: #dcdde1;
+}
+
+body, html{
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--color);
+    text-align: center;
+}
+
+a, a:visited:not(.backbutton) {
+    color: #b8bac2;
+    text-decoration: none;
+}
+
+a:hover:not(.backbutton) {
+    text-decoration: underline;
+}
+
+button, #submitbutton, .backbutton{
+    background-color: var(--color);
+    color: black;
+    border-color: black;
+    border: 2px solid;
+    padding: 4px 8px;
+    font-weight: bold;
+    letter-spacing: .25px;
+    text-decoration: none;
+    font-size: .8rem;
+}
+
+#header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+}
+
+#signupform, .loginpage{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+
+    flex: 1 0 auto;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    width: 313px;
+}
+
+form div{
+    display: flex;
+    text-align: left;
+
+    justify-content: space-between;
+
+    flex: 1 0 auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+label {
+    flex: 1 0 160px;
+}
+
+.calendarpage{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+aside{
+    border-radius: 4px;
+    background-color: rgb(39,55,69);
+    max-width: 300px;
+    align-items: stretch;
+    flex: 1;
+    min-height: 750px;
+    min-width: 300px;
+}
+
+.workplaceoptions{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -68px;
+}

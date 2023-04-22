@@ -1,20 +1,23 @@
 <%- include('../partials/header.ejs') %>
 
-<h1>Alter, <%= employee.name %>:</h1>
-<form method="POST" action="/schedules/<%= workplaceID %>/<%= employee.id %>?_method=PUT">
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name" value="<%=employee.name%>" />
-    <br>
-    <input type="submit" value="Confirm">
-</form>
-<form method="POST" action="/schedules/<%= workplaceID %>/<%= employee.id %>?_method=DELETE">
-    <input type="submit" value="Delete Employee">
-</form>    
-<a href="/schedules/<%= workplaceID %>">
-    <button>
-        Back
-    </button>
-</a>
+<h1>Alter <%= employee.name %>!</h1>
+<div class="loginpage">
+    <form method="POST" action="/schedules/<%= workplaceID %>/<%= employee.id %>?_method=PUT">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="<%=employee.name%>" />
+        </div>
+        <div>
+            <a href="/schedules/<%= workplaceID %>" class="backbutton">
+                Back
+            </a>
+            <input type="submit" value="Confirm" class="backbutton">
+        </div>
+    </form>
+    <form method="POST" action="/schedules/<%= workplaceID %>/<%= employee.id %>?_method=DELETE">
+        <input type="submit" value="Delete Employee" class="backbutton" style="background-color: red; margin-top: 10px;">
+    </form>    
+</div>
 
 </body>
 </html>

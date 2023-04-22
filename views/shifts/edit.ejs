@@ -1,36 +1,45 @@
 <%- include('../partials/header.ejs') %>
 
-<h1>Alter, <%= shift.title %>'s Shift:</h1>
-<form method="POST" action="/schedules/<%= workplaceID %>/<%= shift.id %>/shift?_method=PUT">
-    <select id="title" name="title">
-        <option><%=shift.title%></option>
-        <% for(let i = 0; i < myEmployees.length; i++) { %>
-            <% if(myEmployees[i].workplace === workplaceID && shift.title !== myEmployees[i].name){ %>
-            <option><%=myEmployees[i].name%></option>
-            <% } %>
-        <% } %>
-    </select>
-    <br>
-
-    <label for="start">Date:</label>
-    <input type="date" name="start" id="start" value="<%=shift.start%>" />
-
-    <label for="startTime">Start Time:</label>
-    <input type="time" name="startTime" id="startTime" value="<%=shift.startTime%>" />
-
-    <label for="endTime">End Time:</label>
-    <input type="time" name="endTime" id="endTime" value="<%=shift.endTime%>" />
-
-    <input type="submit" value="Confirm">
-</form>
-<form method="POST" action="/schedules/<%= workplaceID %>/<%= shift.id %>/shift/?_method=DELETE">
-    <input type="submit" value="Delete Shift">
-</form>    
-<a href="/schedules/<%= workplaceID %>">
-    <button>
-        Back
-    </button>
-</a>
+<div class="loginpage">
+    <h1>Alter <%= shift.title %>'s Shift!</h1>
+    <form method="POST" action="/schedules/<%= workplaceID %>/<%= shift.id %>/shift?_method=PUT">
+        <div>
+            <label for="title">Employee:</label>
+            <select id="title" name="title">
+                <option><%=shift.title%></option>
+                <% for(let i = 0; i < myEmployees.length; i++) { %>
+                    <% if(myEmployees[i].workplace === workplaceID && shift.title !== myEmployees[i].name){ %>
+                    <option><%=myEmployees[i].name%></option>
+                    <% } %>
+                <% } %>
+            </select>
+        </div>
+    
+        <div>
+            <label for="start">Date:</label>
+            <input type="date" name="start" id="start" value="<%=shift.start%>" />
+        </div>
+    
+        <div>
+            <label for="startTime">Start Time:</label>
+            <input type="time" name="startTime" id="startTime" value="<%=shift.startTime%>" />
+        </div>
+    
+        <div>
+            <label for="endTime">End Time:</label>
+            <input type="time" name="endTime" id="endTime" value="<%=shift.endTime%>" />
+        </div>
+        <div>
+            <a href="/schedules/<%= workplaceID %>" class="backbutton">
+                Back
+            </a>
+            <input type="submit" value="Confirm" class="backbutton">
+        </div>
+    </form>
+    <form method="POST" action="/schedules/<%= workplaceID %>/<%= shift.id %>/shift/?_method=DELETE">
+        <input type="submit" value="Delete Shift" class="backbutton" style="background-color: red; margin-top: 10px;">
+    </form>    
+</div>
 
 </body>
 </html>

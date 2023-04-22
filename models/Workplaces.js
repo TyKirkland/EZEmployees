@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const workplaceSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,

@@ -23,7 +23,7 @@ router.post('/signup', async (req, res, next) => {
         const hash = await bcrypt.hash(newUser.password, salt);
         newUser.password = hash;
         await Users.create(newUser);
-        res.redirect('/schedules');
+        res.redirect('/');
     }
     catch(err){
         res.redirect('/signup');
