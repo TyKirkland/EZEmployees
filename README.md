@@ -2,9 +2,9 @@
 ## Project Description:
 EZEmployees is an employee scheduling application used by managers and business owners to easily and effectively create appropriate employee schedules based on which workplace they are working from.
 ## Screenshots
-<img src="https://i.imgur.com/lRU6S29.png" width="250px" height="280px">
-<img src="https://i.imgur.com/bfyYZ8I.png" width="250px" height="280px">
-<img src="https://i.imgur.com/kEeoSh6.png" width="250px" height="280px">
+<img src="https://i.imgur.com/lRU6S29.png">
+<img src="https://i.imgur.com/bfyYZ8I.png">
+<img src="https://i.imgur.com/kEeoSh6.png">
 ## Getting Started:
 Simply create an account and login to begin creating workplaces, employees, and shifts! Live link available [here](https://ezemployees.onrender.com/).
 ## MVP Goals:
